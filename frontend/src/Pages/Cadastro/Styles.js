@@ -91,6 +91,9 @@ font-family: Arial, Helvetica, sans-serif;
 display: flex;
 
 `
-
+export const StyledForm = styled.form`
+display: flex;
+flex-direction: column;
+`
 
 

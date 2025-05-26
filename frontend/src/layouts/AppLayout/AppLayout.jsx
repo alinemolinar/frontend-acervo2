@@ -1,6 +1,6 @@
 import { Container } from "./Styles"
 import { Outlet } from "react-router-dom";
-import { Header, Footer } from "../../Components";
+import { Header, Footer } from "../../../Components";
 
 
 export default function AppLayout(){
@@ -13,4 +13,5 @@ export default function AppLayout(){
         </Container>
     );
 } 
+
 

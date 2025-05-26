@@ -1,3 +1,3 @@
 export default function Footer() {
-    return <h3>FOOTER</h3>;
+    return <h3></h3>;
 }

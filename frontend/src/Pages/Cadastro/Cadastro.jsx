@@ -5,13 +5,29 @@ import { DivTexto2 } from "./Styles";
 import { ButtonConta } from "./Styles";
 import { ButtonLogin } from "./Styles";
 import { DivCadastro } from "./Styles";
-
-
+import { StyledForm } from "./Styles";
+import { useForm } from "react-hook-form";
+import { useCreateUser } from "../../hooks/user";
 
 function Cadastro() {
+//hooks
+    const{
+        handleSubmit,
+        register,
+        formState: { errors },
+    } = useForm({});
+    const { mutate: postUser, inPending } = useCreateUser({});
+    //onSubmit
+    function response(data){
+        console.log("cheguei");
+        postUser(data);
+
+    }
 
     return (
         <>
+        
+        <StyledForm onSubmit = {handleSubmit(response)}>
         <DivColuna>
         cpe
         </DivColuna>
@@ -20,11 +36,11 @@ function Cadastro() {
             CADASTRO
         </DivCadastro>
 
-        <InputCadastro type= "name" placeholder= "Nome"/>
-        <InputCadastro2 type= "email" placeholder= "E-mail"/>
-        <InputCadastro2 type= "role" placeholder= "Cargo"/>
-        <InputCadastro2 type= "password" placeholder= "Senha"/>
-        <InputCadastro2 type= "password" placeholder= "Repita sua senha"/>
+        <InputCadastro {...register("nome")} type= "name" placeholder= "Nome"/>
+        <InputCadastro2 {...register("email")} type= "email" placeholder= "E-mail"/>
+        <InputCadastro2 {...register("cargo")} type= "role" placeholder= "Cargo"/>
+        <InputCadastro2 {...register("senha")} type= "password" placeholder= "Senha"/>
+        <InputCadastro2 {...register("senha")} type= "password" placeholder= "Repita sua senha"/>
 
         <DivTexto2>
         Já tem uma conta? Faça o login
@@ -41,7 +57,7 @@ function Cadastro() {
         
 
         
-
+         </StyledForm>
 
         </>
 
