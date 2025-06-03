@@ -1,15 +1,5 @@
 import styled from "styled-components";
 
-export const DivColunaL = styled.div`
-width: 100%;
-height: 132px;
-box-sizing: border-box;
-background-color: #FFE712 ;
-color: black;
-font-size: 40px;
-font-style: normal;
-display: flex;
-`
 
 export const DivLogin = styled.div `
 color: #FFE712;
@@ -89,3 +79,17 @@ display: flex;
 padding-left: 32px;
 padding-top: 10px;
 `
+export const StyledFormL = styled.form`
+display: flex;
+flex-direction: column;
+`
+
+export const Container = styled.div`
+min-height: 100vh;
+min-height: 100dvh;
+justify-content: center;
+align-items: center;
+
+display: flex;
+grid-template-rows: auto 1fr;
+`;
