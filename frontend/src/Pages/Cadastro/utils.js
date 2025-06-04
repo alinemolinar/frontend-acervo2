@@ -1,7 +1,7 @@
 import z from "zod";
 
 export const userValidationSchema = z.object({
-    name: z
+    nome: z
     .string({ required_error: "É necessário haver nome" })
     .min(2, { message: "Nome muito curto" })
     .max(60,{ message: "Nome muito grande" }),
@@ -11,13 +11,22 @@ export const userValidationSchema = z.object({
     .min(2, { message: "E-mail muito curto" })
     .max(60,{ message: "E-mail muito grande" }),
 
-     role: z
+     cargo: z
     .string({ required_error: "É necessário haver cargo" })
     .min(2, { message: "Nome do cargo é muito curto" })
     .max(60,{ message: "Nome do cargo é muito grande" }),
 
-     password: z
+    status: z.string().optional().default("ativo"),
+
+    senha: z
     .string({ required_error: "É necessário haver senha" }),
 
+    confirmaSenha: z.string({ required_error: "É necessário confirmar a senha" }),
+
+
+})
+.refine((data) => data.senha === data.confirmaSenha, {
+    message: "As senhas não coincidem.",
+    path: ["confirmaSenha"], 
 
 });

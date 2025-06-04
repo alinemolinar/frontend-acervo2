@@ -5,7 +5,7 @@ export function useGetUsers({
     onSuccess = () => {}, 
     onError = () => {},
 }= {}) {
-    return useQuery({ queryKey: ["users"], queryFn: GetUsers, onSuccess, onError });
+    return useQuery({ queryKey: ["usuarios"], queryFn: GetUsers, onSuccess, onError });
 }
 
 export function useCreateUser({ 

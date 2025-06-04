@@ -12,6 +12,9 @@ import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { userValidationSchema } from "./Utils";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Link } from "react-router-dom";
+
+
 
 function Cadastro() {
     const queryClient = useQueryClient();
@@ -26,7 +29,7 @@ function Cadastro() {
         onSuccess: () => {
           toast.success("Usuário cadastrado com sucesso!");
           queryClient.invalidateQueries({
-          queryKey: ["users"], 
+          queryKey: ["usuarios"], 
         });
     },
          onError: (err) =>{
@@ -34,7 +37,7 @@ function Cadastro() {
 
          },
     });
-    const { data: users, isLoading } = useGetUsers({});
+    const { data: usuarios, isLoading } = useGetUsers({});
     //onSubmit
     function response(data){
         console.log("cheguei");
@@ -53,30 +56,32 @@ function Cadastro() {
             CADASTRO
         </DivCadastro>
         <div>
-            <InputCadastro {...register("nome")} type= "name" placeholder= "Nome"/>
-            {errors.name && <p>{errors.name.message}</p>}
+            <InputCadastro {...register("nome")} type= "text" placeholder= "Nome"/>
+            {errors.nome && <p>{errors.nome.message}</p>}
         </div>
         <div>
             <InputCadastro2 {...register("email")} type= "email" placeholder= "E-mail"/>
             {errors.email && <p>{errors.email.message}</p>}
         </div>
         <div>
-            <InputCadastro2 {...register("cargo")} type= "role" placeholder= "Cargo"/>
-            {errors.role && <p>{errors.role.message}</p>}
+            <InputCadastro2 {...register("cargo")} type= "text" placeholder= "Cargo"/>
+            {errors.cargo && <p>{errors.cargo.message}</p>}
         </div>
         <div>
             <InputCadastro2 {...register("senha")} type= "password" placeholder= "Senha"/>
-            {errors.password && <p>{errors.password.message}</p>}
+            {errors.senha && <p>{errors.senha.message}</p>}
         </div>
         <div>
-             <InputCadastro2 {...register("senha")} type= "password" placeholder= "Repita sua senha"/>
-             {errors.password && <p>{errors.password.message}</p>}
+             <InputCadastro2 {...register("confirmaSenha")} type= "password" placeholder= "Repita sua senha"/>
+             {errors.confirmaSenha && <p>{errors.confirmaSenha.message}</p>}
         </div>
 
         <DivTexto2>
         Já tem uma conta? Faça o login
         <ButtonLogin>
+            <Link to = "/login">
             aqui.
+            </Link>
         </ButtonLogin>
         </DivTexto2>
 

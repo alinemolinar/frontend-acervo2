@@ -10,3 +10,9 @@ font-size: 40px;
 font-style: normal;
 display: flex;
 `
+export const ContainerH = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100%;
+`
