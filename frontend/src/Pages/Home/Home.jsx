@@ -7,11 +7,14 @@ import api from '../../services/api/api';
 import { Table } from "antd";
 import { StyledTable } from './Styles';
 import { useGetSessoes, useCreateSessao, useDeleteSessao } from '../../hooks/sessoes';
-import { useForm } from "react-hook-form";
+import useAuthStore from '../../stores/auth';
 import { useQueryClient } from '@tanstack/react-query';
 import { Button } from 'antd';
 import { ButtonModal } from './Styles';
 import ModalHome from './Modal';
+import { StyledFormH } from './Styles';
+import { useForm } from 'react-hook-form';
+
 
 
 
@@ -22,11 +25,13 @@ function Home(){
     formState: { errors },
  } = useForm({});
 
+ const {mutate: postSessao, isPending} = useCreateSessao({});
+
 
    const [openModal, setOpenModal] = useState(false)
 
     const { data: sessoes, isLoading } = useGetSessoes({});
-    const [usuarios, setUsuarios] = useState([]);
+    const [usuarios] = useState([]);
     const [carregando, setCarregando] = useState(false);
     //onSubmit
     function response(data) {
@@ -52,63 +57,66 @@ const columns = [
 
 ];
 
-    const getUsuarios = async () => {
-         try{
-      setCarregando(true);
-      const res = await api.get("/usuarios");
-      setUsuarios(res.data);
 
 
-    } catch (erro) {
-     console.error(erro);
-     alert(erro.response.data.message);
-
-    } finally {
-      setCarregando(false);
-    }
-
-    };
-
-    useEffect(() => {
-        getUsuarios();
-    }, [])
-
-    if (carregando)
-       return (
-       <ContainerHome>
-         <h1>Carregando...</h1>
-      </ContainerHome>
-      );
-
-
-       const getSessoes = async () => {
-         try{
-      setCarregando(true);
+     const getSessoes = async () => {
+   try{
+     setCarregando(true);
       const res = await api.get("/sessoes");
-      getSessoes(res.data);
+     getSessoes(res.data);
 
 
     } catch (erro) {
      console.error(erro);
-     alert(erro.response.data.message);
+    alert(erro.response.data.message);
 
     } finally {
       setCarregando(false);
-    }
+  }
 
-    };
+  };
 
-    useEffect(() => {
-        getSessoes();
+   useEffect(() => {
+       getSessoes();
     }, [])
 
     if (carregando)
        return (
        <ContainerHome>
-         <h1>Carregando...</h1>
+        <h1>Carregando...</h1>
       </ContainerHome>
       );
 
+     
+  //  const getUsuarios = async () => {
+    //     try{
+    //  setCarregando(true);
+    //  const res = await api.get("/usuarios");
+    //  setUsuarios(res.data);
+
+//
+    //} catch (erro) {
+    // console.error(erro);
+   //  alert(erro.response.data.message);
+
+    //} finally {
+    ////  setCarregando(false);
+    ///}
+
+   // };
+
+    //useEffect(() => {
+     //   getUsuarios();
+   ///}, [])
+
+ ////   if (carregando)
+   //    return (
+   //   <ContainerHome>
+   //      <h1>Carregando...</h1>
+    //  </ContainerHome>
+    //  );
+
+    console.log(sessoes);
 
     return(
         <div>
@@ -137,9 +145,14 @@ const columns = [
             </Carousel>
              </DivCarousel>
 
+            
+
+
              <ButtonModal onClick={() => setOpenModal(true)}>
                          Fazer Login
             </ButtonModal>
+
+            
              <ModalHome isOpen = {openModal} setModalOpen={() => setOpenModal(!openModal)}>
 
              </ModalHome>
@@ -150,7 +163,7 @@ const columns = [
              {isLoading ? ( 
              <p>carregando</p>
             ):(
-              sessoes.map((sessoes) => {
+              sessoes.map((getSessoes) => {
                 return <div>{sessoes?.timestamps}</div>
               })
                )}

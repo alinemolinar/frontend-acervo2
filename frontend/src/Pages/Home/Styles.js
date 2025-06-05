@@ -105,4 +105,9 @@ font-weight: 600;
 cursor: pointer;
 `
 
+export const StyledFormH = styled.form`
+display: flex;
+flex-direction: column;
+`
+
 
