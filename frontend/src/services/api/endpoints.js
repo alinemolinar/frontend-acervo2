@@ -20,3 +20,20 @@ export async function DeleteUser(id) {
     const {data} = await api.delete(`/usuarios:${id}`);
     return data;
 }
+
+//Sessoes
+export async function GetSessoes() {
+    const { data } = await api.get(`/sessoes`);
+    return data;
+}
+
+export async function CreateSessao(body) {
+    console.log("no endpoint");
+    const { data } = await api.post(`/sessoes`, body);
+    return data;
+}
+
+export async function DeleteSessao(id) {
+    const {data} = await api.delete(`/sessoes:${id}`);
+    return data;
+}

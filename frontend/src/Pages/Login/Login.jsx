@@ -11,6 +11,7 @@ import { Container } from "./Styles"
 import api from "../../services/api/api"
 import useAuthStore from "../../stores/auth"
 import { Link, useNavigate } from "react-router-dom"
+import { LinkCadastro } from "./Styles"
 
 function Login(){
   const [email, setEmail] = useState("");
@@ -66,11 +67,11 @@ function Login(){
           
           <DivTextoL>
           Não tem login? Faça seu cadastro
-          <ButtonCadastro>
-            <Link to= "/cadastro">
+          
+            <LinkCadastro to= "/cadastro">
                 aqui.
-                </Link>
-          </ButtonCadastro>
+                </LinkCadastro>
+        
 
           </DivTextoL>
 

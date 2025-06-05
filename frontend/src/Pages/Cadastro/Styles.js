@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+import Cadastro from "./Cadastro";
 
 export const DivColuna = styled.div`
 width: 100%;
@@ -79,7 +81,7 @@ margin-bottom: 50px;
 display: flex;
 padding-left: 20px;
 padding-top: 10px;
-
+cursor: pointer;
 `
 export const DivCadastro = styled.div `
 color: #FFE712;
@@ -94,6 +96,34 @@ display: flex;
 export const StyledForm = styled.form`
 display: flex;
 flex-direction: column;
+`
+
+export const Campo = styled.div``
+
+export const Label = styled.label``
+
+export const LinkLogin = styled(Link)`
+color: yellow;
+text-decoration: none;
+width: 15%;
+height: 10px;
+border: black;
+background-color: black;
+font-size: 17px;
+padding-bottom: 1%;
+padding-right: 85px;
+font-weight: 400;
+display: flex;
+padding-left: 5px;
+
+`
+
+export const LinkCL = styled(Link)`
+font-size: 25px;
+font-weight: 600;
+color: black;
+text-decoration: none;
+
 `
 
 

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 
 export const DivLogin = styled.div `
@@ -78,6 +79,7 @@ margin-bottom: 50px;
 display: flex;
 padding-left: 32px;
 padding-top: 10px;
+cursor: pointer;
 `
 export const StyledFormL = styled.form`
 display: flex;
@@ -93,3 +95,18 @@ align-items: center;
 display: flex;
 grid-template-rows: auto 1fr;
 `;
+
+export const LinkCadastro = styled(Link)`
+width: 15%;
+height: 10px;
+border: black;
+background-color: black;
+color: yellow;
+font-size: 17px;
+padding-bottom: 1%;
+padding-right: 70px;
+font-weight: 400;
+display: flex;
+padding-left: 5px;
+text-decoration: none;
+`

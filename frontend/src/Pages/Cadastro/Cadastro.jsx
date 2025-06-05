@@ -3,16 +3,18 @@ import { InputCadastro} from "./Styles";
 import { InputCadastro2 } from "./Styles";
 import { DivTexto2 } from "./Styles";
 import { ButtonConta } from "./Styles";
-import { ButtonLogin } from "./Styles";
 import { DivCadastro } from "./Styles";
 import { StyledForm } from "./Styles";
 import { useForm } from "react-hook-form";
-import { useCreateUser, useGetUsers } from "../../hooks/user";
+import { useCreateUser } from "../../hooks/user";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { userValidationSchema } from "./Utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "react-router-dom";
+import { LinkCL } from "./Styles";
+import { LinkLogin } from "./Styles";
+
 
 
 
@@ -37,7 +39,6 @@ function Cadastro() {
 
          },
     });
-    const { data: usuarios, isLoading } = useGetUsers({});
     //onSubmit
     function response(data){
         console.log("cheguei");
@@ -78,17 +79,17 @@ function Cadastro() {
 
         <DivTexto2>
         Já tem uma conta? Faça o login
-        <ButtonLogin>
-            <Link to = "/login">
+        
+            <LinkLogin to = "/login">
             aqui.
-            </Link>
-        </ButtonLogin>
+            </LinkLogin>
+        
         </DivTexto2>
 
         
 
         <ButtonConta>
-            CRIAR CONTA
+        CRIAR CONTA
         </ButtonConta>
         
 
