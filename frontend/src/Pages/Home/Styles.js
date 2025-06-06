@@ -27,6 +27,7 @@ gap: 20px;
   .ant-table-container {
     background-color: #363636;
     font-size: 20px;
+    color: white;
   }
    .ant-table-thead > tr > th {
     background-color:  #FFE712;

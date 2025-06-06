@@ -38,28 +38,34 @@ function Home(){
     //const { data: sessoes, isLoading } = useGetSessoes({});
    // const { data: usuarios } = useGetUsers({});
    // const [ setSessoes] = useState([]);
-    const [carregando, setCarregando] = useState(false);
+  //  const [carregando, setCarregando] = useState(false);
     //onSubmit
-    function response(data) {
+   // function response(data) {
 
-    }
+   // }
 
 const columns = [
   {
     title: 'MEMBRO',
-    dataIndex: 'id_usuario',
-    key: 'id_usuario',
+    dataIndex: ['id_usuario', 'nome'],
+    key: 'nome',
   
+  },
+    {
+    title: 'CARGO',
+    dataIndex: ['id_usuario', 'cargo'],
+    key: 'cargo',
   },
   {
     title: 'CHEGADA',
-    dataIndex: ['timestamps', 'chegada'],
-    key: 'chegada',
+    dataIndex: 'createdAt',
+    key: 'createdAt',
+    render: (text) => new Date(text).toLocaleString()
   },
   {
-    title: 'TEMPO',
-    dataIndex: ['timestamps', 'tempo'],
-    key: 'tempo',
+    title: 'ÚLTIMA ATUALIZAÇÃO',
+    dataIndex:  'updatedAt',
+    key: 'updatedAt',
   },
    {
             title: '', // Coluna para o botão de lixeira
@@ -137,20 +143,14 @@ const columns = [
     //  );
 
  const dataSource = useMemo(() => {
-    if (!sessoes || !usuarios) return [];
+    if (!sessoes) return [];
+    return sessoes.map(sessao => ({
+        key: sessao._id,
+        ...sessao
+    }));
+}, [sessoes]);
 
-        return sessoes.map(sessao => {
-            const usuarioAssociado = usuarios.find(user => user.id === sessao.id_usuario);
-            return {
-                key: sessao.id, // O Ant Design Table precisa de uma 'key' única para cada linha
-                ...sessao,
-                nomeUsuario: usuarioAssociado ? usuarioAssociado.nome : 'Desconhecido',
-                cargoUsuario: usuarioAssociado ? usuarioAssociado.cargo : '', // Supondo que o usuário tenha um campo 'cargo'
-            };
-        });
-    }, [sessoes, usuarios]);
-
-    const handleDeleteSessao = async (id) => {
+   const handleDeleteSessao = async (id) => {
         if (window.confirm("Tem certeza que deseja deletar esta sessão?")) {
             try {
                 await deleteSessao(id, {
