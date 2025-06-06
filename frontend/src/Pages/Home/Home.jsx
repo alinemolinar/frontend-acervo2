@@ -7,13 +7,13 @@ import api from '../../services/api/api';
 import { Table } from "antd";
 import { StyledTable } from './Styles';
 import { useGetSessoes, useCreateSessao, useDeleteSessao } from '../../hooks/sessoes';
+import { useGetUsers } from '../../hooks/user';
 import useAuthStore from '../../stores/auth';
 import { useQueryClient } from '@tanstack/react-query';
-import { Button } from 'antd';
 import { ButtonModal } from './Styles';
 import ModalHome from './Modal';
-import { StyledFormH } from './Styles';
 import { useForm } from 'react-hook-form';
+
 
 
 
@@ -31,7 +31,8 @@ function Home(){
    const [openModal, setOpenModal] = useState(false)
 
     const { data: sessoes, isLoading } = useGetSessoes({});
-    const [usuarios] = useState([]);
+    const { data: usuarios } = useGetUsers({});
+    const [ setSessoes] = useState([]);
     const [carregando, setCarregando] = useState(false);
     //onSubmit
     function response(data) {
@@ -41,18 +42,18 @@ function Home(){
 const columns = [
   {
     title: 'MEMBRO',
-    dataIndex: 'sessoes.id_usuario',
-    key: 'sessoes',
+    dataIndex: 'id_usuario',
+    key: 'id_usuario',
   },
   {
     title: 'CHEGADA',
-    dataIndex: 'sessoes.timestamps',
-    key: 'sessoes',
+    dataIndex: 'timestamps.chegada',
+    key: 'chegada',
   },
   {
     title: 'TEMPO',
-    dataIndex: 'sessoes.timestamps',
-    key: 'sessoes',
+    dataIndex: 'timestamps.tempo',
+    key: 'tempo',
   },
 
 ];
@@ -116,7 +117,16 @@ const columns = [
     //  </ContainerHome>
     //  );
 
-    console.log(sessoes);
+    const deletarSessao = async (id) => {
+  try {
+    await api.delete(`/sessoes/${id}`);
+    alert("Sessão deletada com sucesso!");
+    getSessoes(); // Atualiza a tabela após deletar
+  } catch (erro) {
+    console.error(erro);
+    alert("Erro ao deletar sessão.");
+  }
+};
 
     return(
         <div>
@@ -157,18 +167,17 @@ const columns = [
 
              </ModalHome>
 
-    
-             <StyledTable dataSource={sessoes} columns={columns}>
+             <StyledTable 
+             dataSource={sessoes}
+             columns={columns} 
+             loading={isLoading} 
+             >
+               
+            
+              
+              </StyledTable>
 
-             {isLoading ? ( 
-             <p>carregando</p>
-            ):(
-              sessoes.map((getSessoes) => {
-                return <div>{sessoes?.timestamps}</div>
-              })
-               )}
-
-               </StyledTable>
+           
              
               </ContainerHome>
 

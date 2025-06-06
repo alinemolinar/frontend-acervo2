@@ -45,7 +45,7 @@ export default function ModalHome ({isOpen, setModalOpen, children }) {
                 Tem certeza que você deseja fazer esse login?
 
             </StyledModal>
-            <StyledFormH>
+            <StyledFormH onSubmit = {handleSubmit(response)}>
             <ButtonLoginM>
                 Login
             </ButtonLoginM>

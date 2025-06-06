@@ -50,6 +50,7 @@ display: flex;
   img {
     width: 200px;
     margin-right: 10px;
+    height: 200px;
   }
 `
 
