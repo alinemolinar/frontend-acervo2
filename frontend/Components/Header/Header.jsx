@@ -21,7 +21,7 @@ export default function Header() {
         <DivColuna5>
 
             <Logo>
-                 <img src="https://media.discordapp.net/attachments/674342271147311107/1379917188474863749/4fd3f3931b40ec2bf56833299097665c7347434c.png?ex=6841fb87&is=6840aa07&hm=227dcb8ae98495432cedccce7eea62008aaab99e5c72c2f1ea202001ec893ad1&=&format=webp&quality=lossless&width=829&height=829" alt="Logo" />
+                 <img src="https://ponto.cpejr.com.br/static/media/logoCPE.08bb49af.png" alt="Logo" />
             </Logo> 
        {isHome && (
         <>

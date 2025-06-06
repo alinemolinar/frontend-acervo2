@@ -94,6 +94,7 @@ height: 30px;
 font-weight: 700;
 margin-left: 120px;
 margin-top: 10px;
+cursor: pointer;
 
 `
 export const SaidaX = styled.div`
@@ -109,5 +110,19 @@ export const StyledFormH = styled.form`
 display: flex;
 flex-direction: column;
 `
+
+export const BotaoLixo = styled.button`
+  background: none;
+  border: none;
+  color: #fff; 
+  font-size: 1.5em; 
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+  padding: 0; 
+
+  &:hover {
+    color: #ff4d4d; 
+  }
+`;
 
 
